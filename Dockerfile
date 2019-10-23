@@ -1,8 +1,4 @@
-FROM websphere-liberty
-COPY server.xml /config/server.xml
-
-RUN installUtility install --acceptLicense defaultServer
-COPY target/acmeair-bookingservice-springboot-2.1.1-SNAPSHOT.jar /config/apps/
-
-
-
+FROM websphere-liberty:springBoot2
+COPY --chown=1001:0 server.xml /config/server.xml
+COPY --chown=1001:0 target/acmeair-bookingservice-springboot-2.1.1-SNAPSHOT.jar /config/apps/
+RUN configure.sh
